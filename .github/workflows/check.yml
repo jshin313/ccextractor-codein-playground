@@ -1,19 +1,17 @@
-name: Check Title and Description
+name: Check
+
 on: [pull_request]
+
 jobs:
-  example:
-    name: Check Title and Description
+  checker:
     runs-on: ubuntu-latest
     steps:
-    - name: Run actions/checkout 
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-    - name: Run fabiankoestring/body-regex-validator-action
-      uses: fabiankoestring/body-regex-validator-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PULL_REQUEST_PATTERN: '^(.*Description.*Changes.*Tests.*)$'
-        PULL_REQUEST_COMMENT: 'This is my pr comment template.'
-        ISSUE_PATTERN: '^(.*Description.*Behavior.*)$'
-        ISSUE_COMMENT: 'This is my issue comment template.'
+    - name: Check pull request description
+    - uses: actions/checkout@v2
+    - run: echo "There is no pull request description"
+      if: github.event.pull_request.body == ""
+    
+    - run: echo "There is a pull pull request description"
+      if: github.event.pull_request.body != ""
+ 
+    
