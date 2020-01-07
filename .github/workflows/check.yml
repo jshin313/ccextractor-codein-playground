@@ -1,9 +1,8 @@
-name: Check
-on:
- pull_request
+name: Check Title and Description
+on: [pull_request]
 jobs:
   example:
-    name: Check
+    name: Check Title and Description
     runs-on: ubuntu-latest
     steps:
     - name: Run actions/checkout 
@@ -15,3 +14,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PULL_REQUEST_PATTERN: '^(.*Description.*Changes.*Tests.*)$'
+        PULL_REQUEST_COMMENT: 'This is my pr comment template.'
+        ISSUE_PATTERN: '^(.*Description.*Behavior.*)$'
+        ISSUE_COMMENT: 'This is my issue comment template.'
