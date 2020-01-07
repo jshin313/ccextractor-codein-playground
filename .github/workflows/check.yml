@@ -6,8 +6,8 @@ jobs:
   checker:
     runs-on: ubuntu-latest
     steps:
-    - name: Check pull request description
     - uses: actions/checkout@v2
+    - name: Check pull request description
     - run: echo "There is no pull request description"
       if: github.event.pull_request.body == ""
     
